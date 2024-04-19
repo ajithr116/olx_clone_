@@ -14,6 +14,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const {Firebase} = useContext(FirebaseContext);
   const db = getFirestore(Firebase);
@@ -91,10 +92,20 @@ export default function Signup() {
           <br />
           <label htmlFor="lname">Password</label>
           <br />
-          <input className="input" type="password" id="lname" name="password" value={password}onChange={(e)=>setPassword(e.target.value)}/>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input"
+            type={passwordVisible ? "text" : "password"}
+            id="lname"
+            name="password"
+          />
+          <button type="button" onClick={() => setPasswordVisible(!passwordVisible)}>
+            {passwordVisible ? "Hide" : "Show"}
+          </button>
           <br />
           <br />
-          <button>Signup</button>
+          <button className='signout'>Signup</button>
         </form>
         <a onClick={loginButton}>Login</a>
       </div>

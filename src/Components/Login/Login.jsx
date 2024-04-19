@@ -12,6 +12,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {Firebase} = useContext(FirebaseContext);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
   const auth = getAuth(Firebase);
@@ -35,7 +36,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential)=>{
       console.log(userCredential);
-      alert("Logged success fully ");
+      alert("Logged successfully ");
       navigate('/home');  
     })
     .catch((error)=>{
@@ -43,7 +44,7 @@ function Login() {
         alert('Invalid email or password.'); 
       }
       else{
-        console.error('Error signing in:', error);
+        console.error('Some mismatch', error);
         alert('Not Exist ');
       }
     })
@@ -58,9 +59,20 @@ function Login() {
           <br />
           <input value={email} onChange={(e)=>setEmail(e.target.value)} className="input" type="email" id="fname" name="email"/>
           <br />
+          <br />
           <label htmlFor="lname">Password</label>
           <br />
-          <input value={password} onChange={(e)=>setPassword(e.target.value)} className="input" type="password" id="lname" name="password" />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input"
+            type={passwordVisible ? "text" : "password"}
+            id="lname"
+            name="password"
+          />
+          <button type="button" onClick={() => setPasswordVisible(!passwordVisible)}>
+            {passwordVisible ? "Hide" : "Show"}
+          </button>
           <br />
           <br />
           <button>Login</button>
