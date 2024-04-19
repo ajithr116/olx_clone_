@@ -1,0 +1,146 @@
+.headerParentDiv {
+  padding: 10px;
+  background-color: whitesmoke;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+}
+
+.headerChildDiv {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.placeSearch, .productSearch {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border: 2px solid #002f34;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.placeSearch ::selection, .productSearch ::selection {
+  border-color: #23e5db;
+  outline-color: #23e5db;
+}
+
+.placeSearch input, .productSearch input {
+  border-color: transparent;
+  outline-color: transparent;
+  flex-grow: 1;
+}
+
+.productSearch .searchAction {
+  min-width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #002f34;
+  border-radius: 0 4px 4px 0;
+}
+
+.productSearch .searchAction svg {
+  fill: white;
+}
+
+.language, .loginPage, .sellMenu {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.language span, .loginPage span {
+  font-size: 15px;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.loginPage hr {
+  margin: 0;
+  background-color: black;
+  height: 2px;
+}
+
+.loginPage a{
+  text-decoration: none;
+}
+
+.sellMenu {
+  position: relative;
+  cursor: pointer;
+}
+
+.sellMenu .all {
+  fill: white;
+}
+
+.sellMenu .top {
+  fill: #23e5db;
+}
+
+.sellMenu .left {
+  fill: #ffce32;
+}
+
+.sellMenu .right {
+  fill: #3a77ff;
+}
+
+.sellMenu .sellMenuContent {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #002f34;
+}
+
+.sellMenu .sellMenuContent span {
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+  .placeSearch,
+  .productSearch,
+  .sellMenu {
+    display: none;
+  }
+}
+
+.language select {
+  background-color: #f8f9fa;
+  border: none;
+  padding: 10px;
+  font-size: 1em;
+  color: #495057;
+}
+
+@media only screen and (min-width: 701px) and (max-width: 1024px) {
+  /* Styles for tablets */
+  .headerChildDiv {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  /* Styles for large desktops */
+  .headerChildDiv {
+    width: 80%;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

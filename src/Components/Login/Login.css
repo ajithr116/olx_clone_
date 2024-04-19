@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.loginParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loginParentDiv img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.loginParentDiv form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginParentDiv form label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.loginParentDiv form .input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.loginParentDiv form button {
+  padding: 10px;
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginParentDiv a {
+  margin-top: 20px;
+  color: #ff4500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .loginParentDiv form {
+    width: 80%;
+  }
+}
