@@ -49,31 +49,32 @@ function Header() {
           </select>
           {/* <Arrow></Arrow> */}
         </div>
-        <div className="loginPage">
-          {user ? (
-            <>
-              <span>{user.displayName}</span>
-              <button onClick={() => {
-                const auth = getAuth();
-                signOut(auth).then(() => {
-                  navigate('/home');
-                }).catch((error) => {
-                    console.log("error while sigout" + error);
-                });
-              }}>Logout</button>
-            </>
-          ) : (
-            <a href="/login">Login</a>
-          )}
-          <hr />
-        </div>
-
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
             <span>SELL</span>
           </div>
+        </div>
+        <div className="loginPage">
+          {user ? (
+            <>
+              <span>{user.displayName}</span>
+              <button className='signout' onClick={() => {
+                if (window.confirm('Are you sure you want to sign out?')) {
+                  const auth = getAuth();
+                  signOut(auth).then(() => {
+                    navigate('/home');
+                  }).catch((error) => {
+                    console.log("error while signout: " + error);
+                  });
+                }
+              }}>Logout</button>
+            </>
+          ) : (
+            <a href="/login">Login</a>
+          )}
+          <hr />
         </div>
       </div>
     </div>

@@ -144,3 +144,16 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.signout{
+  background-color: red;
+  color:white;
+  padding:5px 10px;
+  border-radius:5px;
+  margin-left: 4px;;
+}
+.signout:hover{
+  background-color:white;
+  color:red;
+  border:2px solid red;
+}
