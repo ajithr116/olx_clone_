@@ -28,6 +28,7 @@ function App() {
         <Route path="/create" element={<Create/>} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/home" element={<Home/>} />
+        
       </Routes>
     </Router>
   )
