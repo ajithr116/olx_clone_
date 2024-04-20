@@ -1,6 +1,8 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './Create.css';
 import Header from '../Header/Header.jsx';
+import {FirebaseContext, AuthContext} from '../../store/Context.jsx';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const Create = () => {
 
@@ -10,7 +12,10 @@ const Create = () => {
   const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState('');
 
-  function handleSubmit(e){
+  const {firebase} = useContext(FirebaseContext);
+  const {user} = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!name.trim()) {
@@ -33,8 +38,25 @@ const Create = () => {
       return;
     }
 
-    console.log(name, category, price, image);
-  }
+    const storage = getStorage(firebase);
+    const storageRef = ref(storage, `images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+
+    uploadTask.on('state_changed', 
+      (snapshot) => {
+        console.log(snapshot);
+      }, 
+      (error) => {
+        console.log(error);
+      }, 
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageURL(downloadURL);
+        });
+      }
+    );
+  };
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -46,7 +68,7 @@ const Create = () => {
   return (
     <Fragment>
       <Header />
-      <card>
+      <div className='card'>
         <div className="centerDiv">
           <form onSubmit={handleSubmit}>
             <label htmlFor="fname">Name</label>
@@ -91,7 +113,7 @@ const Create = () => {
             <button type='submit' className="uploadBtn">Upload and Submit</button>
           </form>
         </div>
-      </card>
+      </div>
     </Fragment>
   );
 };
