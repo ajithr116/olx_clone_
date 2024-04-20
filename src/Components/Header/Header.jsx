@@ -28,7 +28,7 @@ function Header() {
           <input type="text" />
           <Arrow></Arrow>
         </div>
-        <div className="productSearch">
+        {/* <div className="productSearch">
           <div className="input">
             <input
               type="text"
@@ -38,7 +38,7 @@ function Header() {
           <div className="searchAction">
             <Search color="#ffffff"></Search>
           </div>
-        </div>
+        </div> */}
         <div className="language">
           <select value={language} onChange={(e) => setLanguage(e.target.value)}>
             {languages.map((lang) => (
