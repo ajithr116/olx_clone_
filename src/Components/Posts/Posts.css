@@ -39,6 +39,14 @@
     height: 270px;
     display: inline-block;
     cursor: pointer;
+    border:1px solid rgb(216, 210, 210);
+    border-radius: 10px;
+    background-color:white;
+  }
+  .card:hover{
+    border:1px solid black;
+    transition: background-color 0.2s ease-in-out;
+
   }
   
   .card .favorite {
@@ -78,11 +86,62 @@
   }
   
   .recommendations {
-    margin: 16px 16px 24px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
   }
   
-  .recommendations .heading span {
+  .recommendations .heading {
     font-size: 24px;
-    color: #002f34;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .recommendations .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .recommendations .card {
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  .recommendations .card .favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .recommendations .card .image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .recommendations .card .content {
+    padding: 10px;
+  }
+  
+  .recommendations .card .content .rate {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .recommendations .card .content .kilometer,
+  .recommendations .card .content .name {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .recommendations .card .date {
+    font-size: 14px;
+    color: #999;
+    text-align: right;
   }
   
