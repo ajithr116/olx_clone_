@@ -1,8 +1,12 @@
 import { Fragment, useState, useContext } from 'react';
 import './Create.css';
 import Header from '../Header/Header.jsx';
+
 import {FirebaseContext, AuthContext} from '../../store/Context.jsx';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {Firebase} from '../../Firebase/config.js';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
 
@@ -14,7 +18,7 @@ const Create = () => {
 
   const {firebase} = useContext(FirebaseContext);
   const {user} = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,9 +42,16 @@ const Create = () => {
       return;
     }
 
+    if (!user || !user.uid) {
+      alert('User ID is null. Please log in.');
+      return;
+    }
+
     const storage = getStorage(firebase);
     const storageRef = ref(storage, `images/${image.name}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
+    const db = getFirestore(Firebase);
+    const date = new Date();
 
     uploadTask.on('state_changed', 
       (snapshot) => {
@@ -52,7 +63,16 @@ const Create = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
+          addDoc(collection(db, 'products'),{
+            name:name,
+            category:category,
+            prize:price,
+            url:downloadURL,
+            userId:user.uid,
+            createdAt:date.toDateString(),
+          });
           setImageURL(downloadURL);
+          navigate('/home')
         });
       }
     );
